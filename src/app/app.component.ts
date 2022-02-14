@@ -6,5 +6,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'store';
+  imgParent = '';
+  //url imagen: https://www.w3schools.com/howto/img_avatar.png
+
+  onLoaded(img:string){
+    console.log('load en el padre', img)
+  }
 }
