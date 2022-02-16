@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Product } from '../../models/product.model';
+import { StoreService } from '../../services/store.service';
 
 @Component({
   selector: 'app-list-products',
@@ -8,6 +9,8 @@ import { Product } from '../../models/product.model';
 })
 export class ListProductsComponent implements OnInit {
 
+  myShoppingCart : Product[] = [];
+  total=0;
   products: Product[] = [
     {
       id: '1',
@@ -35,9 +38,17 @@ export class ListProductsComponent implements OnInit {
     },
   ];
 
-  constructor() { }
+  constructor(
+    private storeService: StoreService
+  ) {
+    this.myShoppingCart = this.storeService.getShoppingCart();
+  }
 
   ngOnInit(): void {
   }
 
+  onAddShoppingCart(product: Product){
+    this.storeService.addProduct(product);
+    this.total = this.storeService.getTotal();
+  }
 }
