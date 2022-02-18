@@ -28,6 +28,8 @@ export class ListProductsComponent implements OnInit {
     },
 
   };
+  limit = '10';
+  offset = '0';
 
   constructor(
     private storeService: StoreService,
@@ -42,6 +44,7 @@ export class ListProductsComponent implements OnInit {
       //console.log(data);
       this.products=data;
     });
+    this.loadMore()
   }
 
   onAddShoppingCart(product: Product){
@@ -75,4 +78,38 @@ export class ListProductsComponent implements OnInit {
       this.products.unshift(data);
     })
   }
+
+  updateProduct(){
+    const changes = {
+      title:' nuevo titulo',
+    }
+
+    const id = this.productChosen.id;
+
+    this.productService.update(id,changes)
+    .subscribe(data => {
+      console.log('Updated:', data);
+      const productIndex = this.products.findIndex(item => item.id === this.productChosen.id);
+      this.products[productIndex] = data;
+      this.productChosen = data;
+    })
+  }
+
+  deleteProduct(){
+    const id = this.productChosen.id;
+    this.productService.delete(id)
+    .subscribe(() =>{
+      const productIndex = this.products.findIndex(item => item.id === this.productChosen.id);
+      this.products.splice(productIndex,1);
+      this.showProductDetail = false;
+    })
+  }
+
+  loadMore(){
+    this.productService.getProductsByPage(this.limit, this.offset).subscribe((data: Product[]) => {
+      this.products.push(...data)
+
+    })
+  }
+
 }
