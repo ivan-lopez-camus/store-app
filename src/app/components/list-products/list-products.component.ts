@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Product } from '../../models/product.model';
+import { CreateProductDTO, Product } from '../../models/product.model';
 import { StoreService } from '../../services/store.service';
 import {ProductsService} from '../../services/products.service';
 
@@ -13,8 +13,21 @@ export class ListProductsComponent implements OnInit {
   myShoppingCart : Product[] = [];
   total=0;
   products: Product [] = [];
-  today = new Date();
-  date = new Date(2021,1,21);
+  // today = new Date();
+  // date = new Date(2021,1,21);
+  showProductDetail = false;
+  productChosen : Product = {
+    id: '',
+    title: '',
+    price: 0,
+    images: [],
+    description :'',
+    category: {
+      id: '',
+      name: '',
+    },
+
+  };
 
   constructor(
     private storeService: StoreService,
@@ -34,5 +47,32 @@ export class ListProductsComponent implements OnInit {
   onAddShoppingCart(product: Product){
     this.storeService.addProduct(product);
     this.total = this.storeService.getTotal();
+  }
+
+  toogleProductDetail(){
+    this.showProductDetail = !this.showProductDetail;
+  }
+
+  onShowDetail(id: string){
+      this.productService.getProduct(id).subscribe(data=>{
+       this.toogleProductDetail()
+        this.productChosen = data;
+      })
+  }
+
+  createNewProduct(){
+    const product: CreateProductDTO = {
+      title:'Nuevo producto',
+      description: 'Es oferta',
+      price: 1200,
+      images: ['https://placeimg.com/640/480/any?random=${Math.random()}'],
+      categoryId: 2,
+
+    }
+    this.productService.create(product)
+    .subscribe(data =>{
+      console.log('created',data);
+      this.products.unshift(data);
+    })
   }
 }
