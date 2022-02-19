@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import {HttpClientModule} from '@angular/common/http';
+import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
 import { SwiperModule } from 'swiper/angular';
 // import SwiperCore, { Pagination } from "swiper";
 
@@ -13,7 +13,7 @@ import { ListProductsComponent } from './components/list-products/list-products.
 import { NavComponent } from './components/nav/nav.component';
 import { ReversePipe } from './pipes/reverse.pipe';
 import { TimeAgoPipe } from './pipes/time-ago.pipe';
-
+import { TokenInterceptor } from './interceptors/token.interceptor';
 
 //SwiperCore.use([Pagination]);
 
@@ -34,7 +34,9 @@ import { TimeAgoPipe } from './pipes/time-ago.pipe';
     HttpClientModule,
     SwiperModule
   ],
-  providers: [],
+  providers: [
+    {provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi:true}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

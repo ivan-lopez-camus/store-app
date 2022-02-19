@@ -15,7 +15,7 @@
 </p>
 <br> -->
 <br>
-<button (click)="createNewProduct()">Create Product</button>
+<button class="button" (click)="createNewProduct()">Create Product</button>
 <br>
 <br>
 <div class="products--grid">
@@ -25,12 +25,12 @@
   (addedProduct)="onAddShoppingCart($event)"
   (showProduct)="onShowDetail($event)"
   ></app-product>
-  <button (click)="loadMore()">Load more</button>
 </div>
 <div class="product-detail" [class.active]="showProductDetail">
   <div *ngIf="productChosen">
-    <button (click)="toogleProductDetail()">Close</button>
-    <h1>{{productChosen.title}}</h1>
+    <button class="button" (click)="toogleProductDetail()">Close</button>
+    <h1 class="title">{{productChosen.title}}</h1>
+    <br>
     <swiper
       [slidesPerView]="1"
     >
@@ -39,8 +39,10 @@
       </ng-template>
     </swiper>
     <p>{{productChosen.description}}</p>
-    <button (click)="updateProduct()">Editar</button>
-    <button (click)="deleteProduct()">Eliminar</button>
+    <br>
+    <br>
+    <button class="button" (click)="updateProduct()">Editar</button>
+    <button class="btnDelete" (click)="deleteProduct()">Eliminar</button>
   </div>
 
 </div>

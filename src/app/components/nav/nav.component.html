@@ -6,9 +6,13 @@
     <a href="">
       <img src="./assets/svg/logo_yard_sale.svg" alt="logo">
     </a>
-    <a href="">
-      <img src="./assets/svg/icon_shopping_cart.svg" alt="logo">
-    </a>
+    <div class="cart">
+      <a href="">
+        <img src="./assets/svg/icon_shopping_cart.svg" alt="logo">
+      </a>
+      <span class="counter">{{ counter }}</span>
+    </div>
+
   </div>
   <div class="side-menu" [class.active]="activeMenu">
     <button (click)="toggleMenu()">Close</button>
@@ -32,12 +36,17 @@
       </ul>
     </nav>
     <div class="info">
-      <div class="account">ivan.123@gmail.com</div>
+      <div class="account">
+        <button class="button" *ngIf="!profile; else otherBlock" (click)="createUser()">Create user by default</button>
+        <button class="button" *ngIf="!profile; else elseBlock" (click)="login()">Login</button>
+        <ng-template #elseBlock>{{ profile?.email }}</ng-template>
+        <ng-template #otherBlock>{{ profile?.name }}/</ng-template>
+      </div>
       <div class="cart">
         <a href="">
           <img src="./assets/svg/icon_shopping_cart.svg" alt="logo">
         </a>
-        <span class="counter">{{counter}}</span>
+        <span class="counter">{{ counter }}</span>
       </div>
     </div>
   </div>

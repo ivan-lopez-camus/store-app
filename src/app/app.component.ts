@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Product } from './models/product.model';
+import { AuthService } from './services/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -10,12 +10,18 @@ export class AppComponent {
   imgParent = '';
   //url imagen: https://www.w3schools.com/howto/img_avatar.png
   showImage = true;
+  token = '';
 
-  onLoaded(img:string){
-    console.log('load en el padre', img)
+  constructor(
+    private authService : AuthService,
+  ){
+
   }
 
   toogleImg(){
     this.showImage = !this.showImage;
   }
+
+
+
 }

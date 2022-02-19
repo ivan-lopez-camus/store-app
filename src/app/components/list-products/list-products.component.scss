@@ -37,3 +37,22 @@
     grid-gap: 15px;
   }
 }
+
+.btnDelete{
+  background-color: red;
+  border: none;
+  color: white;
+  padding: 5px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+.title{
+  text-align: center;
+  font-weight: bold;
+  font-size: 30px;
+}

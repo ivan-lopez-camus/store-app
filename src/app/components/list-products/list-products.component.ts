@@ -46,7 +46,7 @@ export class ListProductsComponent implements OnInit {
       //console.log(data);
       this.products=data;
     });
-    this.loadMore()
+
   }
 
   onAddShoppingCart(product: Product){
@@ -125,13 +125,6 @@ export class ListProductsComponent implements OnInit {
       const productIndex = this.products.findIndex(item => item.id === this.productChosen.id);
       this.products.splice(productIndex,1);
       this.showProductDetail = false;
-    })
-  }
-
-  loadMore(){
-    this.productService.getProductsByPage(this.limit, this.offset).subscribe((data: Product[]) => {
-      this.products.push(...data)
-
     })
   }
 
