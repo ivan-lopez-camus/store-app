@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component , Input } from '@angular/core';
 import { CreateProductDTO, Product } from '../../models/product.model';
 import { switchMap } from 'rxjs/operators';
 import { StoreService } from '../../services/store.service';
@@ -9,11 +9,11 @@ import {ProductsService} from '../../services/products.service';
   templateUrl: './list-products.component.html',
   styleUrls: ['./list-products.component.scss']
 })
-export class ListProductsComponent implements OnInit {
+export class ListProductsComponent {
 
   myShoppingCart : Product[] = [];
   total=0;
-  products: Product [] = [];
+  @Input() products: Product [] = [];
   // today = new Date();
   // date = new Date(2021,1,21);
   showProductDetail = false;
@@ -29,8 +29,6 @@ export class ListProductsComponent implements OnInit {
     },
 
   };
-  limit = '10';
-  offset = '0';
   statusDetail : 'loading'  | 'success'  | 'error'  | 'init' ='init';
 
   constructor(
@@ -38,15 +36,6 @@ export class ListProductsComponent implements OnInit {
     private productService: ProductsService,
   ) {
     this.myShoppingCart = this.storeService.getShoppingCart();
-  }
-
-  ngOnInit(): void {
-    this.productService.getAllProducts()
-    .subscribe(data=>{
-      //console.log(data);
-      this.products=data;
-    });
-
   }
 
   onAddShoppingCart(product: Product){

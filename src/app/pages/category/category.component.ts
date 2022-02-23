@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import {ActivatedRoute} from '@angular/router'
+import {switchMap} from 'rxjs/operators'
+import { Product } from '../../models/product.model';
+import { ProductsService } from '../../services/products.service';
 
 @Component({
   selector: 'app-category',
@@ -7,9 +11,27 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CategoryComponent implements OnInit {
 
-  constructor() { }
+  categoryId: string | null = null;
+  products: Product[] = [];
+  constructor(
+    private route : ActivatedRoute,
+    private productService : ProductsService
+  ) { }
 
   ngOnInit(): void {
+    this.route.paramMap.
+    pipe(
+      switchMap(params =>{
+        this.categoryId = params.get('id');
+        if(this.categoryId){
+          return this.productService.getByCategory(this.categoryId)
+        }
+        return []
+      })
+    )
+    .subscribe(data =>{
+      this.products = data;
+     });
   }
 
 }
