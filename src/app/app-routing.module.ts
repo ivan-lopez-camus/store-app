@@ -13,6 +13,11 @@ import { ProfileComponent } from './pages/profile/profile.component';
 const routes: Routes = [
 
   {
+    path: '',
+    redirectTo: '/home',
+    pathMatch : 'full'
+  },
+  {
     path: 'home',
     component: HomeComponent
   },
@@ -40,12 +45,10 @@ const routes: Routes = [
     path: 'profile',
     component: ProfileComponent
   },
-
   {
-    path: '',
-    redirectTo: '/home',
-    pathMatch : 'full'
-  },
+    path: '**',
+    component: NotFoundComponent
+  }
 
 
 ];
