@@ -3,8 +3,8 @@ import { Category } from 'src/app/models/product.model';
 import { User } from 'src/app/models/user.model';
 import { AuthService } from 'src/app/services/auth.service';
 import { CategoriesService } from 'src/app/services/categories.service';
-import {StoreService} from '../../services/store.service'
-import { UsersService } from '../../services/users.service';
+import {StoreService} from '../../../services/store.service'
+import { UsersService } from '../../../services/users.service';
 
 @Component({
   selector: 'app-nav',

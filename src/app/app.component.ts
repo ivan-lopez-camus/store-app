@@ -8,6 +8,7 @@ import { FilesService } from './services/files.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
+  title: 'Productos';
   imgParent = '';
   //url imagen: https://www.w3schools.com/howto/img_avatar.png
   showImage = true;
