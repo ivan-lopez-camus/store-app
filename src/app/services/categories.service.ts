@@ -7,7 +7,7 @@ import { Category } from '../models/product.model';
 })
 export class CategoriesService {
 
-  private apiUrl = 'https://young-sands-07814.herokuapp.com/api/categories';
+  private apiUrl = 'https://damp-spire-59848.herokuapp.com/api/categories';
 
   constructor(
     private http: HttpClient

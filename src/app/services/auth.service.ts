@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { switchMap, tap } from 'rxjs/operators';
 import {TokenService} from './../services/token.service';
-
+import { BehaviorSubject } from 'rxjs';
 import { Auth } from './../models/auth.model';
 import { User } from './../models/user.model';
 @Injectable({
@@ -10,7 +10,9 @@ import { User } from './../models/user.model';
 })
 export class AuthService {
 
-  private apiUrl = 'https://young-sands-07814.herokuapp.com/api/auth';
+  private apiUrl = 'https://damp-spire-59848.herokuapp.com/api/auth';
+  private user = new BehaviorSubject<User | null>(null);
+  user$ = this.user.asObservable();
 
   constructor(
     private http: HttpClient,
@@ -21,18 +23,15 @@ export class AuthService {
     return this.http.post<Auth>(`${this.apiUrl}/login`, {email, password})
     .pipe(
       tap(response => this.tokenService.saveToken(response.access_token))
-    );
+      );
   }
 
   getProfile() {
-    // const headers = new HttpHeaders();
-    // headers.set('Authorization',  `Bearer ${token}`);
-    return this.http.get<User>(`${this.apiUrl}/profile`, {
-      // headers: {
-      //   Authorization: `Bearer ${token}`,
-      //   // 'Content-type': 'application/json'
-      // }
-    });
+
+    return this.http.get<User>(`${this.apiUrl}/profile`)
+    .pipe(
+      tap(user => this.user.next(user))
+    );
   }
 
   loginAndGet(email: string, password: string) {
@@ -40,5 +39,9 @@ export class AuthService {
     .pipe(
       switchMap( () => this.getProfile()),
     )
+  }
+
+  logOut(){
+    this.tokenService.removeToken();
   }
 }
