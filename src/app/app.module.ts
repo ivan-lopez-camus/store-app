@@ -8,7 +8,7 @@ import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { TokenInterceptor } from './interceptors/token.interceptor';
-
+import { QuicklinkModule } from 'ngx-quicklink'
 //SwiperCore.use([Pagination]);
 
 @NgModule({
@@ -22,6 +22,7 @@ import { TokenInterceptor } from './interceptors/token.interceptor';
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
+    QuicklinkModule
 
   ],
   providers: [
