@@ -101,7 +101,7 @@ export class ListProductsComponent {
 
   updateProduct(){
     const changes = {
-      title:' nuevo titulo',
+      title:' Producto Creado',
     }
 
     const id = this.productChosen.id;
