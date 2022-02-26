@@ -44,29 +44,29 @@ export class NavComponent implements OnInit {
   }
 
   login() {
-    // this.authService.login('sebas@mail.com', '123456')
+    // this.authService.login('admin@mail.com', '123456')
     // .subscribe(rta => {
     //   this.token = rta.access_token;
     //   console.log(this.token);
     //   this.getProfile();
     // });
-    this.authService.loginAndGet('sebas@gmail.com', '123456')
+    this.authService.loginAndGet('admin@mail.com', 'admin123')
     .subscribe(() => {
       this.router.navigate(['/profile']);
     });
   }
 
-  createUser(){
-    this.usersService.create({
-      name:'Sebastian',
-      email: 'sebas@gmail.com',
-      password: '123456',
-      role: 'customer'
-    })
-    .subscribe(rta =>{
-      console.log(rta)
-    })
-  }
+  // createUser(){
+  //   this.usersService.create({
+  //     name:'Admin1',
+  //     email: 'admin1@gmail.com',
+  //     password: '1234',
+  //     role: 'admin'
+  //   })
+  //   .subscribe(rta =>{
+  //     console.log(rta)
+  //   })
+  // }
 
   getAllCategories(){
     this.categoriesService.getAll()

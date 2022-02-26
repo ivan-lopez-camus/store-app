@@ -5,6 +5,6 @@
   <h2>{{product.price | currency}}</h2>
   <p>{{product.title}}</p>
   <!-- <button class="btn" (click)="showDetail()">Ver detalle</button> -->
-  <a class="btn" routerLink='.' [queryParams] = "{product: product.id}">Ver detalle</a>
+  <a class="btn" routerLink='.' [queryParams] = "{product: product.id}">Show Detail</a>
   <button class="btn" (click)="addToCart()">Add cart</button>
 </div>

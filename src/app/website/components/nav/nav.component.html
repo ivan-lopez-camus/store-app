@@ -21,7 +21,6 @@
       <li *ngFor = "let item of categories">
         <a routerLinkActive="active" [routerLink]="['/category', item.id]">{{item.name}}</a>
       </li>
-      <li><a href="">Electronics</a></li>
     </ul>
   </div>
 </div>
@@ -36,12 +35,10 @@
         <li *ngFor = "let item of categories">
           <a routerLinkActive="active" [routerLink]="['/category', item.id]">{{item.name}}</a>
         </li>
-        <li><a href="">Electronics</a></li>
       </ul>
     </nav>
     <div class="info">
       <div class="account">
-        <button class="button" *ngIf="!profile; else otherBlock" (click)="createUser()">Create user by default</button>
         <button class="button" *ngIf="!profile; else elseBlock" (click)="login()">Login</button>
         <ng-template #elseBlock>
           <a routerLink="/profile">{{ profile?.email }}</a>

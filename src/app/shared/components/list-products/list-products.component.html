@@ -38,12 +38,12 @@
         <img [src]="img" alt="">
       </ng-template>
     </swiper>
-    <h2 style="font-weight:bold">Precio: {{productChosen.price | currency}}</h2>
+    <h2 style="font-weight:bold">Price: {{productChosen.price | currency}}</h2>
     <p>{{productChosen.description}}</p>
     <br>
     <br>
-    <button class="button" (click)="updateProduct()">Editar</button>
-    <button class="btnDelete" (click)="deleteProduct()">Eliminar</button>
+    <button class="button" (click)="updateProduct()">Update</button>
+    <button class="btnDelete" (click)="deleteProduct()">Delete</button>
   </div>
 
 </div>
